@@ -1,0 +1,11 @@
+# Fires
+*.pyc
+*.lock
+setup.cfg
+
+
+# Folders
+__pycache__/*
+dist/
+.venv/
+.idea/

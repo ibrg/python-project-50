@@ -12,3 +12,6 @@ git clone https://github.com/ibrg/python-project-50
 cd python-project-50
 make build
 make package-install
+```
+### Пример работы 
+[![asciicast](https://asciinema.org/a/rDaSBy4GaPkxRjQ5UXyA9heTk.svg)](https://asciinema.org/a/rDaSBy4GaPkxRjQ5UXyA9heTk)

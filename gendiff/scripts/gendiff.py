@@ -7,7 +7,9 @@ def gendiff_help():
     )
     parser.add_argument('first_file')
     parser.add_argument('second_file')
-    return parser.parse_args()
+    parser.add_argument('-f', '--format', help='set format of output')
+    args = parser.parse_args()
+    return args
 
 
 def main():

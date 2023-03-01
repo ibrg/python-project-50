@@ -18,11 +18,13 @@ def compare(file1, file2):
     for k, v in sorted_file1.items():
         if not file2.get(k):
             result += f'- {k}: {v} \n'
+
         elif file2.get(k) != v:
             result += f'- {k}: {v} \n'
-            result += f"+ {k}:  {file2.get(k)}\n"
+            result += f"+ {k}: {file2.get(k)}\n"
+            
         elif k in file2 and v == file2.get(k):
-            result += f"  {k}:  {file2.get(k)}\n"
+            result += f"  {k}: {file2.get(k)}\n"
         else:
             result += f"+ {k}: {v}"
 
@@ -35,7 +37,7 @@ def compare(file1, file2):
 
 
 def generate_diff(file_path1, file_path2):
-    file1 =  json.load(open(file_path1))
+    file1 = json.load(open(file_path1))
     file2 = json.load(open(file_path2))
 
     if len(file2) > len(file1):

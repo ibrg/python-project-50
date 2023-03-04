@@ -30,7 +30,7 @@ def check_key_in_dicts(dict1: dict, dict2: dict, keys: list) -> dict:
     return result
 
 
-def format_result(data: dict, type_format='json') -> str:
+def show_result(data: dict) -> str:
     # Форматируем вывод согласно формату (по умолчанию json)
     # Пример отображения
     """
@@ -42,14 +42,11 @@ def format_result(data: dict, type_format='json') -> str:
         + verbose: true
         }
     """
-    show = []
-    if type_format == 'json':
-        show = [f" {k} {v['value']}\n" for k, v in data.items()]
+    show = [f" {k} {v['value']}\n" for k, v in data.items()]
     print('{\n', *show, '}')
 
 
 def compare(file1, file2):
-    # TODO: нужно добавить поддержку файлов yaml
     data_dict_a = read_file(file1)
     data_dict_b = read_file(file2)
 
@@ -63,4 +60,4 @@ def compare(file1, file2):
     dicts_keys = sorted(dicts_keys)
 
     result = check_key_in_dicts(data_dict_a, data_dict_b, dicts_keys)
-    return format_result(result)
+    return result

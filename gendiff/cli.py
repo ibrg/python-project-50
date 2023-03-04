@@ -1,5 +1,5 @@
 import argparse
-from .modules.module import compare
+from .modules.module import compare, show_result
 
 
 def gendiff_help():
@@ -13,7 +13,7 @@ def gendiff_help():
     file1 = args.first_file
     file2 = args.second_file
     diff = compare(file1, file2)
-    return diff
+    return show_result(diff)
 
 
 def main():

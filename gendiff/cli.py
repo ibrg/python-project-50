@@ -1,6 +1,6 @@
-from gendiff.modules.parse import gendiff_args
-from gendiff.modules.module import compare
 from gendiff.modules.formater import format_result
+from gendiff.modules.module import compare
+from gendiff.modules.parse import gendiff_args
 
 
 def main():

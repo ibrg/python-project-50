@@ -1,6 +1,5 @@
 from .parse import read_file
 
-
 UNCHANGE = ' '  # ключ есть в обоих файлах
 REMOVE = '-'  # находится в первом файле
 ADDED = '+'  # находится во втором файле

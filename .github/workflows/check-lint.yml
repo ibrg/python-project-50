@@ -1,30 +1,22 @@
 name: dev-check
 
-on: push
-jobs:
+on:  push
+
+jobs: 
+
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.10.10
-
-      - name: Install flake8
-        run: |
-          pip install flake8
-          pip install pytest
-          make install
-      - name: Run linter
+      # Клонируем репозиторий
+      - uses: actions/checkout@v3
+      - run: make setup
+      # Ставим зависимости
+      - run: make install
+      # Запускаем линтер
       - run: make lint
-      
-      - name: Run Tests
-        run: make pytest
-
-      - name: Code Coverage
-        uses: paambaati/codeclimate-action@v3.0.0 
-        env:
-          CODECLIMATE: ${{ secrets.CODECLIMATE }}
-        with:
-          coverageCommand: make test-coverage
-          debug: true
+      # Запускаем тесты
+      # у шагов может быть имя, иногда это помогает отладке
+      # имя выводится на Github при просмотре сборки
+      - name: make tests
+        run: make test 

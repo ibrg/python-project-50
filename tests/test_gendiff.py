@@ -1,5 +1,5 @@
-from .modules.formater import format_result
-from .modules.module import compare
+from gendiff.modules.formater import format_result
+from gendiff.modules.module import compare
 
 file1 = 'tests/fixtures/json/file1.json'
 file2 = 'tests/fixtures/json/file2.json'

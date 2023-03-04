@@ -2,24 +2,21 @@ name: dev-check
 
 on:  push
 
-jobs: 
-
+jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      # Клонируем репозиторий
-      - uses: actions/setup-python@v1
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          python-version: 3.10.10
-      # Ставим зависимости
-      - run: pip install poetry flake8
-            pip install pytest
-            make install
-      # Запускаем линтер
-      - uses: actions/checkout@v3
-      - run: make lint
-      # Запускаем тесты
-      - uses: actions/checkout@v3
-      - name: make tests
-        run: make test 
+          python-version: '3.11.2'
+      - name: install dependencies
+        run: |
+          pip3 install poetry flake8
+          pip3 install pytest
+          make install
+      - name: Run linter
+        run: make lint
+      - name: Run tests
+        run: make test

@@ -17,7 +17,7 @@ jobs:
             pip install pytest
       # Запускаем линтер
       - uses: actions/checkout@v3
-        run: make lint
+      - run: make lint
       # Запускаем тесты
       # у шагов может быть имя, иногда это помогает отладке
       # имя выводится на Github при просмотре сборки

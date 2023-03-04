@@ -1,5 +1,3 @@
-import pytest
-import json
 from gendiff.modules.module import compare
 from gendiff.modules.formater import format_result
 

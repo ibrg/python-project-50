@@ -19,7 +19,6 @@ jobs:
       - uses: actions/checkout@v3
       - run: make lint
       # Запускаем тесты
-      # у шагов может быть имя, иногда это помогает отладке
-      # имя выводится на Github при просмотре сборки
+      - uses: actions/checkout@v3
       - name: make tests
         run: make test 

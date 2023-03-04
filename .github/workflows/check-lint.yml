@@ -23,7 +23,7 @@ jobs:
       - name: Code Coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
-          CODECLIMATE: ${{ secrets.CODECLIMATE }}
+          CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE }}
         with:
           coverageCommand: make test-coverage
           debug: true

@@ -30,22 +30,6 @@ def check_key_in_dicts(dict1: dict, dict2: dict, keys: list) -> dict:
     return result
 
 
-def show_result(data: dict) -> str:
-    # Форматируем вывод согласно формату (по умолчанию json)
-    # Пример отображения
-    """
-        {
-        - follow: false
-            host: hexlet.io
-        - timeout: 50
-        + timeout: 20
-        + verbose: true
-        }
-    """
-    show = [f" {k} {v['value']}\n" for k, v in data.items()]
-    print('{\n', *show, '}')
-
-
 def compare(file1, file2):
     data_dict_a = read_file(file1)
     data_dict_b = read_file(file2)

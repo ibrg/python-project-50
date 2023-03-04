@@ -1,23 +1,11 @@
-import argparse
-from .modules.module import compare, show_result
-
-
-def gendiff_help():
-    parser = argparse.ArgumentParser(
-        description="Compares two configuration files and shows a difference."
-    )
-    parser.add_argument('first_file')
-    parser.add_argument('second_file')
-    parser.add_argument('-f', '--format', help='set format of output')
-    args = parser.parse_args()
-    file1 = args.first_file
-    file2 = args.second_file
-    diff = compare(file1, file2)
-    return show_result(diff)
+from gendiff.modules.parse import gendiff_args
+from gendiff.modules.module import compare
+from gendiff.modules.formater import show_result
 
 
 def main():
-    gendiff_help()
+    args = gendiff_args()
+    show_result(compare(args.first_file, args.second_file))
 
 
 if __name__ == '__main__':

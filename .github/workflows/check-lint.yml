@@ -14,8 +14,8 @@ jobs:
           python-version: 3.10.10
       # Ставим зависимости
       - run: |
-        pip3 install poetry flake8
-        pip3 install pytest
+        pip install poetry flake8
+        pip install pytest
       # Запускаем линтер
       - run: make lint
       # Запускаем тесты

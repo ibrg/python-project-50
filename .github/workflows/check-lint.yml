@@ -9,11 +9,13 @@ jobs:
 
     steps:
       # Клонируем репозиторий
-      - uses: actions/setup-python@v1
+      - uses: actions/setup-python@v2
         with:
           python-version: 3.10.10
       # Ставим зависимости
-      - run: make install
+      - run: |
+        pip3 install poetry flake8
+        pip3 install pytest
       # Запускаем линтер
       - run: make lint
       # Запускаем тесты

@@ -1,38 +1,31 @@
-from .parse import read_file
+from gendiff.modules.parse import read_file
 
-UNCHANGE = ' '  # ключ есть в обоих файлах
-REMOVE = '-'  # находится в первом файле
-ADDED = '+'  # находится во втором файле
+UNCHANGED = ' '
+NEW = '+'
+OLD = '-'
 
 
-def check_key_in_dicts(dict1: dict, dict2: dict, keys: list) -> dict:
+def compare(first_file: str, second_file: str):
+    first = read_file(first_file)
+    second = read_file(second_file)
     result = {}
-    for k in keys:
-        if (k in dict1) and (k in dict2):
-            if dict1[k] == dict2[k]:
-                result[UNCHANGE + ' ' + k] = {"value": dict1[k]}
-            elif dict1[k] != dict2[k]:
-                result[REMOVE + ' ' + k] = {"value": dict1[k]}
-                result[ADDED + ' ' + k] = {"value": dict2[k]}
-        elif k in dict1 and k not in dict2:
-            result[REMOVE + ' ' + k] = {"value": dict1[k]}
-        elif k not in dict1 and k in dict2:
-            result[ADDED + ' ' + k] = {"value": dict2[k]}
-    return result
+    # find keys that have in both files
+    # find keys that have in first but hasn't a second file
+    # find keys that have only second file
+    # check values for all keys in sets
 
+    union_keys = first.keys() & second.keys()
+    only_first = first.keys() - second.keys()
+    only_second = second.keys() - first.keys()
 
-def compare(file1, file2):
-    data_dict_a = read_file(file1)
-    data_dict_b = read_file(file2)
-
-    # Находим уникальные ключи для обох файлов
-    keys_dict_a = set(data_dict_a)
-    keys_dict_b = set(data_dict_b)
-    dicts_keys = keys_dict_a
-    dicts_keys.update(keys_dict_b)
-
-    # отсортировуем полученые ключи
-    dicts_keys = sorted(dicts_keys)
-
-    result = check_key_in_dicts(data_dict_a, data_dict_b, dicts_keys)
-    return result
+    for key in sorted(union_keys):
+        if first[key] == second[key]:
+            result[key] = {'value': first[key], 'status': UNCHANGED}
+        else:
+            result[key] = {'value': first[key], 'status': OLD}
+            result[key + ' '] = {'value': second[key], 'status': NEW}
+    for key in sorted(only_first):
+        result[key] = {'value': first[key], 'status': OLD}
+    for key in sorted(only_second):
+        result[key] = {'value': second[key], 'status': NEW}
+    return dict(sorted(result.items()))

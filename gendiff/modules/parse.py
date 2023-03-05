@@ -1,5 +1,7 @@
 import argparse
 import json
+import yaml
+from pathlib import PurePosixPath
 
 
 def gendiff_args():
@@ -12,7 +14,15 @@ def gendiff_args():
     return parser.parse_args()
 
 
-def read_file(file):
-    with open(file) as f:
-        file = json.load(f)
-    return file
+def get_file_extension(file: str) -> str:
+    return PurePosixPath(file).suffix
+
+
+def read_file(file: str) -> dict:
+    extension = get_file_extension(file)
+    sourse = open(file)
+    if extension == '.json':
+        data = json.load(sourse)
+    elif extension in ['.yml', '.yaml']:
+        data = yaml.save_load(sourse)
+    return data

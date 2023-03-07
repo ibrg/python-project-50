@@ -17,3 +17,4 @@ make package-install
 ```
 ### Пример работы 
 [![asciicast](https://asciinema.org/a/rDaSBy4GaPkxRjQ5UXyA9heTk.svg)](https://asciinema.org/a/rDaSBy4GaPkxRjQ5UXyA9heTk)
+[![asciicast](https://asciinema.org/a/muG76mcSAreNNOjCN72Kr9HVI.svg)](https://asciinema.org/a/muG76mcSAreNNOjCN72Kr9HVI)

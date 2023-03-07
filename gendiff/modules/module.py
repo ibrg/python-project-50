@@ -1,31 +1,36 @@
-from gendiff.modules.parse import read_file
+def compare(dict1: dict, dict2: dict):
+    UNCHANGED = "  "
+    NEW = "+ "
+    OLD = "- "
 
-UNCHANGED = ' '
-NEW = '+'
-OLD = '-'
-
-
-def compare(first_file: str, second_file: str):
-    first = read_file(first_file)
-    second = read_file(second_file)
     result = {}
-    # find keys that have in both files
-    # find keys that have in first but hasn't a second file
-    # find keys that have only second file
-    # check values for all keys in sets
 
-    union_keys = first.keys() & second.keys()
-    only_first = first.keys() - second.keys()
-    only_second = second.keys() - first.keys()
+    union_keys = dict1.keys() & dict2.keys()
+    only_first = dict1.keys() - dict2.keys()
+    only_second = dict2.keys() - dict1.keys()
 
     for key in sorted(union_keys):
-        if first[key] == second[key]:
-            result[key] = {'value': first[key], 'status': UNCHANGED}
+        if isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
+            result[key] = {
+                "key": key,
+                "status": "nested",
+                "value": compare(dict1[key], dict2[key])}
+        elif dict1[key] == dict2[key]:
+            result[key] = {
+                "key": key,
+                "value": str(dict1[key]).lower(),
+                "status": UNCHANGED}
         else:
-            result[key] = {'value': first[key], 'status': OLD}
-            result[key + ' '] = {'value': second[key], 'status': NEW}
+            result[key] = {"key": key, "status": "difference",
+                           "old_value": str(dict1[key]).lower(),
+                           "new_value": str(dict2[key]).lower()}
+
     for key in sorted(only_first):
-        result[key] = {'value': first[key], 'status': OLD}
+        result[key] = {"key": key,
+                       "value": str(dict1[key]).lower(),
+                       "status": OLD}
     for key in sorted(only_second):
-        result[key] = {'value': second[key], 'status': NEW}
+        result[key] = {"key": key,
+                       "value": str(dict2[key]).lower(),
+                       "status": NEW}
     return dict(sorted(result.items()))

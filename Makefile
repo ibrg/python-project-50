@@ -5,7 +5,7 @@ build:
 	poetry build
 
 package-install:
-	python3 -m pip install --user dist/*.whl --no-warn-script-location
+	python3 -m pip install dist/*.whl --no-warn-script-location
 
 lint: 
 	python -m flake8 gendiff

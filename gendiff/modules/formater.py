@@ -1,12 +1,12 @@
 import json
 
 
-def format_flat_json(data: dict) -> dict:
+def format(data: dict) -> dict:
     result = {}
     for k, v in sorted(data.items()):
 
         if v['status'] == 'nested':
-            result[k] = format_flat_json(v['value'])
+            result[k] = format(v['value'])
 
         elif v['status'] == 'difference':
             result['- ' + v['key']] = v['old_value']
@@ -16,7 +16,10 @@ def format_flat_json(data: dict) -> dict:
     return result
 
 
-def show_result(data: dict) -> str:
-    diff = format_flat_json(data)
-    diff_json = json.dumps(diff, indent=2)
-    return diff_json.replace('"', '')
+def stylish_format(data: dict) -> str:
+    diff = json.dumps(format(data), indent=4)
+    return diff.replace('"', '')
+
+
+def json_format(data: dict):
+    return json.dumps(data, indent=4)

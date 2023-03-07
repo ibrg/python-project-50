@@ -24,5 +24,5 @@ def read_file(filepath: str) -> dict:
     if extension == '.json':
         data = json.load(sourse)
     elif extension in ['.yml', '.yaml']:
-        data = yaml.save_load(sourse)
+        data = yaml.safe_load(sourse)
     return data

@@ -1,8 +1,9 @@
-def compare(dict1: dict, dict2: dict):
-    UNCHANGED = "  "
-    NEW = "+ "
-    OLD = "- "
+UNCHANGED = "  "
+NEW = "+ "
+OLD = "- "
 
+
+def compare(dict1: dict, dict2: dict):
     result = {}
 
     union_keys = dict1.keys() & dict2.keys()

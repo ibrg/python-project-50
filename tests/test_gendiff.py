@@ -1,7 +1,7 @@
 import json
-from gendiff.modules.formater import format_result
+from gendiff.modules.formater import stylish_format
 from gendiff.modules.module import compare
-from gendiff.modules.parse import get_file_extension
+from gendiff.modules.parse import get_file_extension, read_file
 
 
 file1 = 'tests/fixtures/json/file1.json'
@@ -19,7 +19,9 @@ correct_json = json.dumps(json.load(open('tests/fixtures/correct/correct_json.js
 
 
 def test_generate_diff():
-    result = format_result(compare(file1, file2))
+    dict1 = read_file(file1)
+    dict2 = read_file(file2)
+    result = stylish_format(compare(dict1, dict2))
     assert correct_file == result
 
 

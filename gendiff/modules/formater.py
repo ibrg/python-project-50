@@ -4,11 +4,10 @@ import json
 def format(data: dict) -> dict:
     result = {}
     for k, v in sorted(data.items()):
-
         if v['status'] == 'nested':
             result[k] = format(v['value'])
 
-        elif v['status'] == 'difference':
+        if v['status'] == 'difference':
             result['- ' + v['key']] = v['old_value']
             result['+ ' + v['key']] = v['new_value']
         else:

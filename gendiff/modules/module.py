@@ -5,7 +5,6 @@ OLD = "- "
 
 def compare(dict1: dict, dict2: dict):
     result = {}
-
     union_keys = dict1.keys() & dict2.keys()
     only_first = dict1.keys() - dict2.keys()
     only_second = dict2.keys() - dict1.keys()

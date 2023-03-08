@@ -7,7 +7,6 @@ file3 = 'tests/fixtures/json/file3.json'
 file4 = 'tests/fixtures/json/file4.json'
 
 
-
 def test_generate_diff():
     with open('tests/fixtures/correct/correct_diff.txt', 'r') as f:
         correct_file = f.read()

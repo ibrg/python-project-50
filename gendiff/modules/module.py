@@ -18,19 +18,19 @@ def compare(dict1: dict, dict2: dict):
         elif dict1[key] == dict2[key]:
             result[key] = {
                 "key": key,
-                "value": str(dict1[key]).lower(),
+                "value": dict1[key],
                 "status": UNCHANGED}
         else:
             result[key] = {"key": key, "status": "difference",
-                           "old_value": str(dict1[key]).lower(),
-                           "new_value": str(dict2[key]).lower()}
+                           "old_value": dict1[key],
+                           "new_value": dict2[key]}
 
     for key in sorted(only_first):
         result[key] = {"key": key,
-                       "value": str(dict1[key]).lower(),
+                       "value": dict1[key],
                        "status": OLD}
     for key in sorted(only_second):
         result[key] = {"key": key,
-                       "value": str(dict2[key]).lower(),
+                       "value": dict2[key],
                        "status": NEW}
     return dict(sorted(result.items()))

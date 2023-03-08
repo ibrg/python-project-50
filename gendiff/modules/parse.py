@@ -24,6 +24,6 @@ def read_file(filepath: str) -> dict:
     elif extension == '.yml' or extension == '.yaml':
         data = yaml.safe_load(source)
     else:
-        raise('File dosn`t support')
+        raise 'File dosn`t support'
     source.close()
     return data

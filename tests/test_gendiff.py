@@ -1,7 +1,3 @@
-import json
-from gendiff.format.stylish import stylish_format
-from gendiff.modules.module import compare
-from gendiff.modules.parse import  read_file
 from gendiff.scripts.generate_diff import generate_diff
 
 

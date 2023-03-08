@@ -17,4 +17,4 @@ def format(data: dict) -> dict:
 
 def stylish_format(data: dict) -> str:
     diff = json.dumps(format(data), indent=2)
-    return diff.replace('"', '')
+    return diff.replace('"', '').replace(',', '')

@@ -15,9 +15,9 @@ def test_generate_diff():
 
 
 def test_stylish_format():
-    with open('tests/fixtures/correct/correct_diff.txt', 'r') as f:
+    with open('tests/fixtures/correct/correct_stylish.txt', 'r') as f:
         result = f.read()
-        assert generate_diff(file1, file2) == result
+        assert generate_diff(file3, file4) == result
 
 
 def test_generate_diff_plain():

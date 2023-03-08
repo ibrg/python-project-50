@@ -21,7 +21,8 @@ def compare(dict1: dict, dict2: dict):
                 "value": dict1[key],
                 "status": UNCHANGED}
         else:
-            result[key] = {"key": key, "status": "difference",
+            result[key] = {"key": key,
+                           "status": "difference",
                            "old_value": dict1[key],
                            "new_value": dict2[key]}
 

@@ -1,15 +1,18 @@
+
 def check(value):
     # Func to check dict value
-    result = ''
+    res = ''
     if isinstance(value, dict):
-        result = '[complex value]'
+        res = '[complex value]'
     elif isinstance(value, bool):
-        result = str(value).lower()
+        res = str(value).lower()
     elif value is None:
-        result = 'null'
+        res = 'null'
     elif isinstance(value, int):
-        result = value
-    return result
+        res = value
+    else:
+        res = f"'{value}'"
+    return res
 
 
 def plain_format(data: dict):

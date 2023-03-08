@@ -6,7 +6,6 @@ def format(data: dict) -> dict:
     for k, v in sorted(data.items()):
         if v['status'] == 'nested':
             result[k] = format(v['value'])
-
         elif v['status'] == 'difference':
             result['- ' + v['key']] = v['old_value']
             result['+ ' + v['key']] = v['new_value']
@@ -16,5 +15,5 @@ def format(data: dict) -> dict:
 
 
 def stylish_format(data: dict) -> str:
-    diff = json.dumps(format(data), indent=2)
+    diff = json.dumps(format(data), indent=4)
     return diff.replace('"', '').replace(',', '')
